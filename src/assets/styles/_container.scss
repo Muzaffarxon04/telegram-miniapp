@@ -1,0 +1,18 @@
+.container {
+    width: 100%;
+    max-width: 1410px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  
+  
+  @include breakpoint-down  (400px) {
+  .container{
+    // overflow: hidden;
+    max-width:365px;
+    padding: 0 16px;
+    // margin: 0;
+  
+  }
+  }

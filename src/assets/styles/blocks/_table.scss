@@ -1,0 +1,70 @@
+.ant-menu-root{
+    background: transparent;
+    .ant-menu-item{
+        color: #fff !important;
+        
+        background:transparent;
+        &-selected{
+            background: #20264E;
+color: #fff;
+        }
+    }
+}
+
+.table-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // color: #fff;
+    padding-bottom: 20px;
+display: flex;
+flex-direction: column;
+.wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+
+    &-subheader{
+box-shadow: rgba(0, 0, 0, 0.04) 0px 5px 22px,  rgba(0, 0, 0, 0.03) 0px 0px 0px 0.5px;
+
+
+
+height: 50px;
+width: 100%;
+border-radius: 10px;
+    }
+}
+
+.modal-header{
+    display: flex;
+
+}
+
+
+
+.action-buttons{
+    display: flex;
+    gap: 10px;
+button{
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+}
+.edit{
+    color: green;
+
+}
+.delete{
+    color: red;
+}
+}
+
+.ant-table{
+    // border: 1px solid #efecec;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 5px 22px,  rgba(0, 0, 0, 0.03) 0px 0px 0px 0.5px;
+
+}

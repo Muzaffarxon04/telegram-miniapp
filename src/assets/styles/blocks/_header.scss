@@ -1,0 +1,50 @@
+.header{
+    background: rgb(0, 21, 41);
+    .dropdown-profile{
+
+        color: #fff;
+        &:hover{
+            color: #fff;
+        }
+
+}
+
+
+}
+
+.demo-logo-vertical{
+    height: 60px;
+    color: #fff;
+    display: flex;
+    font-size: 25px;
+    text-align: center;
+    justify-content: center;
+}
+
+.logo1{
+    padding-top: 10px;
+    display: none;
+}
+
+.logo2{
+    margin-top: 10px;
+}
+
+
+.ant-layout-sider-collapsed{
+   .logo2{
+    display: none;
+   }
+    .logo1{
+    
+        display: block;
+    }
+}
+
+
+    .ant-layout-content{
+
+        min-height: fit-content !important;
+
+        
+    }

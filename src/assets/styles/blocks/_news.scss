@@ -1,0 +1,43 @@
+.addnews-page{
+
+
+    .upper-inner-wrapper{
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap:20px; 
+
+        .ant-select, .ant-input{
+            width: 100% !important;
+            height: 40px;
+        }
+    }
+.picture-upload-wrapper{
+    display: flex;
+    align-items: start;
+    gap: 20px;
+}
+
+    .editor-wrapper{
+        border-bottom: 1px solid #ccc;
+padding-bottom: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+gap: 10px;
+
+        .ck-editor{
+            width: 100%;
+        }
+
+    }
+    .submit-button-wrapper{
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+    
+}
+

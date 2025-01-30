@@ -1,0 +1,158 @@
+.login-page{
+    height: 100vh;
+    width: 100vw;
+    .login-page-wrapper{
+        display: flex;
+        height: 100%;
+        .leftside{
+            background-color: #060a20;
+            position: relative;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // background-image: url(../../Assets/images/login-back.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            .header-logo{
+                width: 70%;
+            }
+            .line{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+        }
+        .rightside{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .center{
+                max-width: 435px;
+                width: 100%;
+                display: flex;
+                transform: translateY(-50px);
+                flex-direction: column;
+                h1{
+                    font-size: 24px;
+                    font-weight: 500;
+                    color: #131111;
+                }
+
+                .ant-form-item-row{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                }
+
+                
+
+                .single-item{
+                    margin-top: 40px;
+                    height: 110px;
+                    position: relative;
+                    p{
+                        font-size: 16px;
+                        color: #131111;
+                        margin-bottom: 10px;
+                        span{
+                            color: $danger;
+                        }
+                    }
+
+                    input{
+                        height: 64px;
+                        width: 100%;
+                        border-radius: 20px;
+                        // border: 1px solid $secondary;
+                        padding-left: 55px;
+                        font-size: 18px;
+                        background-color: #fff;
+                    }
+
+                    .ant-input-outlined:hover{
+                        border-color: #37A141;
+                    }
+
+                    .ant-input-outlined{
+                        border-color: $secondary;
+                    }
+                    .ant-input-outlined.ant-input-status-warning{
+                        border-color: #faad14 !important;
+                    }
+
+                    .ant-input-outlined.ant-input-status-error{
+                        border-color: $danger !important;
+                    }
+                
+                    .ant-input-affix-wrapper{
+                        height: 64px;
+                        width: 100%;
+                        border-radius: 20px;
+                        // border: 1px solid $secondary;
+                        padding-left: 55px;
+                        font-size: 18px;
+                        padding-right: 20px;
+                        input{
+                            height: 100%;
+                            padding-left: 0;
+                        }
+                    }
+                    
+                    .icon{
+                        position: absolute;
+                        z-index: 5;
+                        left: 20px;
+                        top: 55px;
+                    }
+                }
+
+                .ant-form-item-explain-error{
+                    margin-top: 10px;
+                }
+
+                .remember{
+                    display: flex;
+                    margin-top: 40px;
+                    position: static;
+                    height: 24px;
+                    input{
+                        width: 24px !important;
+                        height: 24px !important;
+                        
+                    }
+                    
+                    .ant-checkbox-inner{
+                        width: 24px !important;
+                        height: 24px !important;
+                        border-radius: 8px;
+                        border: 1px solid #9c9c9c;
+                        .ant-checkbox-checked{
+                            border: 1px solid transparent !important;
+                        }
+                        &::after{
+                            width: 8px;
+                            height: 14px;
+                        }
+                    }
+
+                    
+                }
+
+                button{
+                    margin-top: 75px;
+                    width: 100%;
+                    height: 57px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    background-color: #060a20;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+}

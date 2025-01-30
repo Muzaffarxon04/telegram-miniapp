@@ -1,0 +1,20 @@
+@charset "UTF-8";
+@import "fonts";
+@import "normalize";
+@import "variables";
+@import "general";
+@import "mixins";
+@import "container";
+@import "blocks/all-blocks";
+// @import "~antd/dist/antd.css";
+
+
+
+@include breakpoint-down(400px) {
+    main{
+          min-height: 100vh;
+    height: 100%;
+  }
+  }
+
+  

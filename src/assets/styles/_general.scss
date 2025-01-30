@@ -1,0 +1,147 @@
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    // text-decoration: none;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    // list-style-type: none;
+  }
+  
+
+  
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+  
+  body {
+    // position: relative;
+    // height: 100%;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    // background-color: red;
+    // color: #242424;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    object-fit: cover;
+  }
+  
+  main {
+    flex-grow: 1;
+  }
+  
+  
+.ant-layout{
+  max-height: 100vh !important;
+  min-height: 100vh !important;
+  overflow-y: auto;
+}
+.ant-layout-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+
+.quill{
+  .ql-toolbar{
+    background: #fff !important;
+  
+}
+
+
+.ck-editor__main{
+  *{
+    background: #20264E !important;
+
+  }
+}
+
+
+
+}
+
+
+.size-6{
+  width: 20px;
+  height: 20px;
+}
+
+.ck-content{
+
+  td{
+
+      padding-top: 10px !important;
+      padding-right: 10px !important;
+      &:last-child{
+        margin-right: 0 !important;
+      
+    }
+  }
+}
+// .parent-image-colagebox {
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   grid-template-rows:1fr, 1fr ;
+//   grid-column-gap: 20px;
+//   grid-row-gap: 0px;
+
+
+
+//   }
+
+// .ck-editor__editable, .editor{
+//   p{
+    
+//       border: 1px solid red !important;
+//       display: flex;
+//       gap: 20px;
+//     img {
+//         width: 100% !important;
+//       }
+//       img:not(:only-child) {
+//         width: 50%  !important;
+//       }
+    
+//   }
+  
+// }
+
