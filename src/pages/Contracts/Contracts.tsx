@@ -11,13 +11,13 @@ interface Product {
   image: string;
 }
 
-interface User {
-  id: string;
-  first_name: string;
-}
+// interface User {
+//   id: string;
+//   first_name: string;
+// }
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<any>([]);
   const [products, setProducts] = useState<any>([]);
   const [cart, setCart] = useState<Product[]>([]);
   const [theme, setTheme] = useState<string>("light");
@@ -83,12 +83,13 @@ useEffect(() => {
 
   return (
     <div className={`App ${theme}`}>
-      <header>
+      <header>npm i nodemon
         <h1>🛍️ Telegram Shop</h1>
         {user && <p>Welcome, {user.first_name}!</p>}
       </header>
 
       <div className="products">
+<button>{user.first_name} user</button>        
         {products.map((product:any) => (
           <div key={product.id} className="product">
             <img src={product.images[0] ? `https://api.daymall.uz/api/upload/${product.images[0]}` : "https://placehold.co/600x400"}  alt={product.name} width={200}/>
