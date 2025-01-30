@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import "./Home.css";
 
 // Define types
@@ -45,10 +45,10 @@ useEffect(() => {
 
 
     // Fetch products
-    axios
-      .get<any>("https://api.daymall.uz/api/category/8")
-      .then((response) => setProducts(response?.data?.products))
-      .catch((error) => console.error("Error fetching products:", error));
+    // axios
+    //   .get<any>("https://api.daymall.uz/api/category/8")
+    //   .then((response) => setProducts(response?.data?.products))
+    //   .catch((error) => console.error("Error fetching products:", error));
 
     // Detect theme
     setTheme(tg.colorScheme || "light");
@@ -89,15 +89,15 @@ useEffect(() => {
       </header>
 
       <div className="products">
-<button>{user.first_name} user</button>        
-        {products.map((product:any) => (
+    
+        {products.length ? products?.map((product:any) => (
           <div key={product.id} className="product">
             <img src={product.images[0] ? `https://api.daymall.uz/api/upload/${product.images[0]}` : "https://placehold.co/600x400"}  alt={product.name} width={200}/>
             <h3>{product.name}</h3>
             <p>${product.sale_price}</p>
             <button onClick={() => addToCart(product)}>Add to Cart</button>
           </div>
-        ))}
+        )) : <p>Loading products...</p>}
       </div>
 
       <div className="cart">
