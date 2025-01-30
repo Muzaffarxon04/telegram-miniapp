@@ -1,35 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
 import "./Home.css";
 
 // Define types
 interface Product {
   id: string;
   name: string;
-  price: number;
-  image: string;
+  sale_price: number;
+  images: string[];
 }
 
-// interface User {
-//   id: string;
-//   first_name: string;
-// }
+interface CartItem extends Product {
+  quantity: number;
+}
+
+interface User {
+  id: number;
+  first_name: string;
+  last_name?: string;
+  username?: string;
+}
 
 const App: React.FC = () => {
-  const [user, setUser] = useState<any>([]);
-  const [products, setProducts] = useState<any>([]);
-  const [cart, setCart] = useState<Product[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [theme, setTheme] = useState<string>("light");
 
-useEffect(() => { 
-  fetch("https://api.daymall.uz/api/category/8", {
-    headers: {
+  useEffect(() => {
+    fetch("https://api.daymall.uz/api/category/8", {
       method: "GET",
-        }}
-        ).then((response) => response.json())
-        .then((data) => setProducts(data?.data?.products))
-},[])
+    })
+      .then((response) => response.json())
+      .then((data) => setProducts(data?.data?.products))
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
 
   useEffect(() => {
     const tg = (window as any).Telegram?.WebApp;
@@ -43,23 +48,30 @@ useEffect(() => {
       setUser(userData);
     }
 
-
-    // Fetch products
-    // axios
-    //   .get<any>("https://api.daymall.uz/api/category/8")
-    //   .then((response) => setProducts(response?.data?.products))
-    //   .catch((error) => console.error("Error fetching products:", error));
-
     // Detect theme
     setTheme(tg.colorScheme || "light");
   }, []);
 
   const addToCart = (product: Product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prevCart, { ...product, quantity: 1 }];
+    });
   };
 
   const removeFromCart = (productId: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
   };
 
   const checkout = async () => {
@@ -68,12 +80,25 @@ useEffect(() => {
       return;
     }
 
+    const orderSummary = cart
+      .map((item) => `${item.name} (x${item.quantity}) - $${item.sale_price * item.quantity}`)
+      .join("\n");
+
+    const confirmed = window.confirm(
+      `🛒 Order Summary:\n\n${orderSummary}\n\nTotal: $${cart.reduce(
+        (total, item) => total + item.sale_price * item.quantity,
+        0
+      )}\n\nProceed with checkout?`
+    );
+
+    if (!confirmed) return;
+
     try {
       // await axios.post("https://your-backend-url.com/checkout", {
       //   userId: user?.id,
       //   cart,
       // });
-      alert("Order placed!");
+      alert("Order placed successfully!");
       setCart([]); // Clear cart after successful checkout
     } catch (error) {
       console.error("Checkout error:", error);
@@ -85,35 +110,54 @@ useEffect(() => {
     <div className={`App ${theme}`}>
       <header>
         <h1>🛍️ Telegram Shop</h1>
-        {user && <>
-          <h4>Welcome, {user.first_name} {user?.last_name} !! </h4>
-          <p>Your user name: {user.username}</p>
-          <p>Your Id: {user.id}</p>
-        </>
-          }
+        {user && (
+          <>
+            <h4>Welcome, {user.first_name} {user?.last_name}!</h4>
+            <p>Username: {user.username || "N/A"}</p>
+            <p>User ID: {user.id}</p>
+          </>
+        )}
       </header>
 
       <div className="products">
-    
-        {products.length ? products?.map((product:any) => (
-          <div key={product.id} className="product">
-            <img src={product.images[0] ? `https://api.daymall.uz/api/upload/${product.images[0]}` : "https://placehold.co/600x400"}  alt={product.name} width={200}/>
-            <h3>{product.name}</h3>
-            <p>${product.sale_price}</p>
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </div>
-        )) : <p>Loading products...</p>}
+        {products.length ? (
+          products.map((product) => (
+            <div key={product.id} className="product">
+              <img
+                src={
+                  product.images[0]
+                    ? `https://api.daymall.uz/api/upload/${product.images[0]}`
+                    : "https://placehold.co/200x200"
+                }
+                alt={product.name}
+                width={200}
+              />
+              <h3>{product.name}</h3>
+              <p>${product.sale_price}</p>
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
+            </div>
+          ))
+        ) : (
+          <p>Loading products...</p>
+        )}
       </div>
 
       <div className="cart">
         <h2>🛒 Cart</h2>
-        {cart.length === 0 && <p>Cart is empty.</p>}
-        {cart.map((item) => (
-          <div key={item.id} className="cart-item">
-            <p>{item.name} - ${item.price}</p>
-            <button onClick={() => removeFromCart(item.id)}>Remove</button>
-          </div>
-        ))}
+        {cart.length === 0 ? (
+          <p>Cart is empty.</p>
+        ) : (
+          cart.map((item) => (
+            <div key={item.id} className="cart-item">
+              <p>
+                {item.name} - ${item.sale_price} x {item.quantity} = $
+                {item.sale_price * item.quantity}
+              </p>
+              <button onClick={() => removeFromCart(item.id)}>-</button>
+              <button onClick={() => addToCart(item)}>+</button>
+            </div>
+          ))
+        )}
         <button onClick={checkout} disabled={cart.length === 0}>
           Checkout
         </button>
