@@ -86,8 +86,9 @@ useEffect(() => {
       <header>
         <h1>🛍️ Telegram Shop</h1>
         {user && <>
-          <h4>Welcome, {user.first_name} !! 2 </h4>
-          <p> {user.user_name}</p>
+          <h4>Welcome, {user.first_name} {user?.last_name} !! </h4>
+          <p>Your user name: {user.username}</p>
+          <p>Your Id: {user.id}</p>
         </>
           }
       </header>
