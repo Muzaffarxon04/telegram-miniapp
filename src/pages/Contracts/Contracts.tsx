@@ -83,7 +83,7 @@ useEffect(() => {
 
   return (
     <div className={`App ${theme}`}>
-      <header>npm i nodemon
+      <header>
         <h1>🛍️ Telegram Shop</h1>
         {user && <p>Welcome, {user.first_name}!</p>}
       </header>
