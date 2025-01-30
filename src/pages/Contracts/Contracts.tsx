@@ -85,7 +85,11 @@ useEffect(() => {
     <div className={`App ${theme}`}>
       <header>
         <h1>🛍️ Telegram Shop</h1>
-        {user && <p>Welcome, {user.first_name}!</p>}
+        {user && <>
+          <h4>Welcome, {user.first_name} !! 2 </h4>
+          <p> {user.user_name}</p>
+        </>
+          }
       </header>
 
       <div className="products">
