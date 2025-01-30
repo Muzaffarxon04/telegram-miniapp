@@ -167,8 +167,12 @@ const App: React.FC = () => {
                 {item.name} - ${item.sale_price} x {item.quantity} = $
                 {item.sale_price * item.quantity}
               </p>
+              <div>
               <button onClick={() => removeFromCart(item.id)}>-</button>
+              <span>{item.quantity}</span>
               <button onClick={() => addToCart(item)}>+</button>
+
+              </div>
             </div>
           ))
         )}
