@@ -74,6 +74,11 @@ const App: React.FC = () => {
     );
   };
 
+  const getCartQuantity = (productId: string) => {
+    const item = cart.find((item) => item.id === productId);
+    return item ? item.quantity : 0;
+  };
+
   const checkout = async () => {
     if (cart.length === 0) {
       alert("Cart is empty!");
@@ -94,10 +99,6 @@ const App: React.FC = () => {
     if (!confirmed) return;
 
     try {
-      // await axios.post("https://your-backend-url.com/checkout", {
-      //   userId: user?.id,
-      //   cart,
-      // });
       alert("Order placed successfully!");
       setCart([]); // Clear cart after successful checkout
     } catch (error) {
@@ -121,22 +122,35 @@ const App: React.FC = () => {
 
       <div className="products">
         {products.length ? (
-          products.map((product) => (
-            <div key={product.id} className="product">
-              <img
-                src={
-                  product.images[0]
-                    ? `https://api.daymall.uz/api/upload/${product.images[0]}`
-                    : "https://placehold.co/200x200"
-                }
-                alt={product.name}
-                width={200}
-              />
-              <h3>{product.name}</h3>
-              <p>${product.sale_price}</p>
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
-            </div>
-          ))
+          products.map((product) => {
+            const quantity = getCartQuantity(product.id);
+            return (
+              <div key={product.id} className="product">
+                <img
+                  src={
+                    product.images[0]
+                      ? `https://api.daymall.uz/api/upload/${product.images[0]}`
+                      : "https://placehold.co/200x200"
+                  }
+                  alt={product.name}
+                  width={200}
+                />
+                <h3>{product.name}</h3>
+                <p>${product.sale_price}</p>
+                <div className="cart-controls">
+                  {quantity > 0 ? (
+                    <div className="quantity-buttons">
+                      <button onClick={() => removeFromCart(product.id)}>-</button>
+                      <span>{quantity}</span>
+                      <button onClick={() => addToCart(product)}>+</button>
+                    </div>
+                  ) : (
+                    <button onClick={() => addToCart(product)}>Add to Cart</button>
+                  )}
+                </div>
+              </div>
+            );
+          })
         ) : (
           <p>Loading products...</p>
         )}
