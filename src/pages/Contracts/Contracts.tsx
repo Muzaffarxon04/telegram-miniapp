@@ -69,10 +69,10 @@ useEffect(() => {
     }
 
     try {
-      await axios.post("https://your-backend-url.com/checkout", {
-        userId: user?.id,
-        cart,
-      });
+      // await axios.post("https://your-backend-url.com/checkout", {
+      //   userId: user?.id,
+      //   cart,
+      // });
       alert("Order placed!");
       setCart([]); // Clear cart after successful checkout
     } catch (error) {
